@@ -14,7 +14,10 @@ const client = new Client({
 
 client.on('qr', (qr) => {
     logger.info('QR Code received. Please scan it with your phone.');
-    qrcode.generate(qr, { small: true });
+    // Generate with small size for better rendering in logs
+    qrcode.generate(qr, { small: true }, (code) => {
+        console.log(code);
+    });
 });
 
 client.on('ready', () => {
